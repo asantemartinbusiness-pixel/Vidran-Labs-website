@@ -44,10 +44,12 @@ approved assets exist. Visual fidelity to the *original* vidran.net is still unv
 
 | Component | Treatment |
 |---|---|
-| Navigation | A floating Carbon pill (16px radius) holds the wordmark, links and a white pill CTA. The surrounding strip stays click-through. Dropdowns are white panels with a 1px carbon border and no shadow. |
+| Navigation | A floating Carbon pill (16px radius) holds the wordmark, links and a white pill CTA. On desktop it hugs its content and is anchored top-right. It floats over the full-bleed home hero, and the surrounding strip stays click-through. Dropdowns are white panels with a 1px carbon border and no shadow. |
 | Mobile navigation | A full-height vellum panel with carbon hairline rows, light 22px labels, and 44px circular expand toggles. The page behind it is inert. |
 | Hero (light) | Vellum background: label, then display headline, then muted 22px lede. |
-| Hero (porthole) | An 80px-radius Carbon panel with a faint blueprint grid, white display type at bottom-left, and an Onyx caption card linking to Sage. **It stands in for the reference's full-bleed industrial photography until approved imagery exists.** |
+| Hero (home, full-bleed) | A full-viewport, edge-to-edge Onyx field with a faint blueprint grid. The nav pill floats over it, the white display headline and pill buttons sit at bottom-left, and a Carbon caption card linking to Sage sits at bottom-right. **It stands in for the reference's full-bleed industrial photograph until approved imagery exists.** |
+| Hero (Sage, porthole) | An 80px-radius Carbon panel, which is the reference's "image card" geometry, with the same grid and bottom-left type. |
+| Section headlines | Set at the same 52px weight-300 display scale as the hero, as the reference does. The scale contrast with 14–16px body text carries the page. |
 | Buttons | A matched pill pair: filled Carbon and ghost outline. On dark surfaces they invert to white. |
 | Cards | White, 12px radius, 8px gaps. On hover they invert to Carbon instead of lifting on a shadow. |
 | Accordion (FAQ) | Carbon hairline rows with light 22px questions and a 40px circular +/− control. Built on native `<details>`. |
@@ -66,10 +68,10 @@ approved assets exist. Visual fidelity to the *original* vidran.net is still unv
 |---|---|---|
 | Mercury `#8b8b8b` for secondary text | `#6a635e` | WCAG 1.4.3 contrast |
 | "No accent colours" | Dark red for form errors only | Errors must be unmistakable (WCAG 3.3.1). The red is always paired with text. |
-| Full-bleed photography | Carbon blueprint panels | No approved Vidran imagery exists, and stock or borrowed photos are not acceptable |
+| Full-bleed photography | Onyx and Carbon blueprint fields with the same geometry and placement | No approved Vidran imagery exists, and stock or borrowed photos are not acceptable. **Supplying photography is the largest remaining gap to the reference's feel.** |
 | Weights 300/400 only | 500 for inline `<strong>` | Emphasis inside body copy needs some signal |
-| 36px vertical nav padding | 72px-high pill with 12px padding | Keeps 8 nav items and a CTA on one line |
-| Nav anchored top-right | Full-container-width pill | Fits the 8-item information architecture |
+| 36px vertical nav padding | 72px-high pill with 12px padding, and a compact CTA inside it | Keeps 8 nav items and a CTA on one line. The fixed pill height also lets the full-bleed hero sit exactly under it. |
+| Mobile nav | Full-width pill with a Menu button | Anchoring to the top-right doesn't apply at phone widths |
 
 ## Avoided by design
 

@@ -39,6 +39,8 @@ export type Block =
       actions?: Action[];
       /** "dark" renders the carbon porthole panel (stands in for photography). */
       tone?: "light" | "dark";
+      /** "fullbleed": edge-to-edge, full-viewport dark field under the floating nav (home only). */
+      layout?: "inset" | "fullbleed";
       /** Small caption card on a dark panel, linking to a featured item. */
       feature?: { label: string; title: string; href: string };
     })

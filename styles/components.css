@@ -10,7 +10,7 @@
   justify-content: center;
   gap: var(--space-8);
   min-height: var(--tap-min);
-  padding: 0.875rem 1.375rem; /* ≈18/22 with line-height */
+  padding: 1.125rem 1.375rem; /* 18 / 22 */
   border: 1px solid var(--btn-border);
   border-radius: var(--radius-pills);
   background: var(--btn-bg);
@@ -125,11 +125,19 @@
   display: flex;
   align-items: center;
   gap: var(--space-24);
-  min-height: var(--nav-h);
+  height: var(--nav-h);
   padding: var(--space-12) var(--space-12) var(--space-12) var(--space-24);
   border-radius: var(--radius-nav);
   background: var(--color-carbon-warm);
   color: var(--color-text-on-dark);
+}
+
+@media (min-width: 1100px) {
+  .site-header__inner {
+    width: fit-content;
+    margin-left: auto;
+    gap: var(--space-36);
+  }
 }
 
 .wordmark {
@@ -165,7 +173,7 @@
 .primary-nav__list {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-8);
   list-style: none;
 }
 
@@ -280,6 +288,9 @@
   --btn-fg: var(--color-carbon-warm);
   --btn-border: var(--color-paper-white);
   margin-left: var(--space-8);
+  /* Compact inside the pill so the header height stays exactly --nav-h,
+     which the full-bleed hero relies on to sit flush under it. */
+  padding-block: 0.75rem;
 }
 
 .header-cta.btn:hover {
@@ -631,10 +642,11 @@
   margin-bottom: var(--space-36);
 }
 
+/* Section headlines share the hero's display scale — scale contrast carries the page. */
 .section-head__title {
-  font-size: var(--text-heading);
+  font-size: var(--text-display);
   font-weight: var(--weight-light);
-  line-height: var(--leading-heading);
+  line-height: var(--leading-display);
 }
 
 .section-head__intro {
@@ -664,7 +676,7 @@
 
 .hero__lede {
   max-width: 40rem;
-  font-size: var(--text-subheading);
+  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.375rem); /* 18 → 22 */
   line-height: var(--leading-subheading);
   color: var(--color-text-muted);
 }
@@ -712,6 +724,49 @@
   color: var(--color-text-on-dark-muted);
 }
 
+/* Full-viewport, edge-to-edge hero. The header (sticky, transparent strip + pill)
+   floats over it: pull the hero up by the header's height. Onyx (not carbon) so
+   the carbon nav pill stays distinct on top of it. */
+.hero--fullbleed {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 100svh;
+  margin-top: calc(-1 * (var(--nav-h) + var(--space-12)));
+  padding-block: calc(var(--nav-h) + var(--space-12) + var(--space-60)) clamp(2.5rem, 1.5rem + 4vw, 5rem);
+  background-color: var(--color-onyx-depth);
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: center bottom;
+  color: var(--color-text-on-dark);
+}
+
+.hero-bleed__inner {
+  display: grid;
+  gap: var(--space-36);
+  align-items: end;
+}
+
+@media (min-width: 900px) {
+  .hero-bleed__inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
+
+html[data-review="on"] .hero--fullbleed > .provenance-badge {
+  top: calc(var(--nav-h) + var(--space-24));
+}
+
+.hero--fullbleed .hero__lede {
+  color: var(--color-text-on-dark-muted);
+}
+
+.hero--fullbleed .feature-card {
+  background: var(--color-carbon-warm);
+}
+
 /* Feature card on the panel — the "film-still caption" */
 .feature-card {
   position: relative;
@@ -748,7 +803,7 @@
   display: grid;
   gap: var(--space-16);
   max-width: var(--measure);
-  font-size: 1.125rem;
+  font-size: var(--text-body);
   line-height: var(--leading-body);
 }
 
@@ -1694,11 +1749,6 @@ select.field__control {
    ================================================================ */
 .provenance-badge {
   display: none;
-}
-
-html[data-review="on"] [data-provenance="provisional"] {
-  outline: 1px dashed var(--color-mercury);
-  outline-offset: -6px;
 }
 
 html[data-review="on"] [data-provenance] > .provenance-badge {

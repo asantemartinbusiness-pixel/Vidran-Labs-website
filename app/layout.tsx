@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="review-bar" role="region" aria-label="Review build notice">
             <div className="container review-bar__inner">
               <strong>Review build — not for publication.</strong>
-              <span>Dashed blocks are provisional drafts awaiting Vidran Labs approval. See docs/reconstruction-gaps.md.</span>
+              <span>Blocks badged “Provisional draft” await Vidran Labs approval. See docs/reconstruction-gaps.md.</span>
             </div>
           </div>
         ) : null}

@@ -94,6 +94,23 @@ export function BlockView({ block, isFirst, compactHero, sectionIndex }: { block
           {block.actions ? <Actions actions={block.actions} /> : null}
         </div>
       );
+      const feature = block.feature ? (
+        <Link href={block.feature.href} className="feature-card">
+          <span className="eyebrow">{block.feature.label}</span>
+          <span className="feature-card__title">{block.feature.title}</span>
+        </Link>
+      ) : null;
+      if (block.tone === "dark" && block.layout === "fullbleed") {
+        return (
+          <section className="hero hero--fullbleed on-dark" data-provenance={block.provenance}>
+            <span className="provenance-badge">{PROVENANCE_LABEL[block.provenance]}</span>
+            <div className="container hero-bleed__inner">
+              {inner}
+              {feature}
+            </div>
+          </section>
+        );
+      }
       if (block.tone === "dark") {
         return (
           <section className="block hero hero--panel" data-provenance={block.provenance}>
@@ -101,12 +118,7 @@ export function BlockView({ block, isFirst, compactHero, sectionIndex }: { block
             <div className="container">
               <div className="hero-panel on-dark">
                 {inner}
-                {block.feature ? (
-                  <Link href={block.feature.href} className="feature-card">
-                    <span className="eyebrow">{block.feature.label}</span>
-                    <span className="feature-card__title">{block.feature.title}</span>
-                  </Link>
-                ) : null}
+                {feature}
               </div>
             </div>
           </section>

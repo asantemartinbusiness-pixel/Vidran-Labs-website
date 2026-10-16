@@ -20,6 +20,8 @@ test("axe: open mobile menu and form error state", async ({ page }, info) => {
   let results = await new AxeBuilder({ page }).withTags(TAGS).analyze();
   expect(results.violations.map((v) => v.id)).toEqual([]);
   await page.getByRole("button", { name: "Menu" }).click();
+  // Scan the settled state: mid-fade frames blend text into the background.
+  await page.waitForFunction(() => document.getAnimations().every((a) => a.playState !== "running"));
   // While the menu is open, <main> is intentionally inert (modal behaviour), so the
   // best-practice "page has main / h1" rules cannot see it. All WCAG rules still run.
   results = await new AxeBuilder({ page }).withTags(TAGS).disableRules(["landmark-one-main", "page-has-heading-one"]).analyze();
