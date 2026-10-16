@@ -32,3 +32,9 @@ test("axe: cookie dialog", async ({ page }) => {
   const results = await new AxeBuilder({ page }).include("dialog").withTags(TAGS).analyze();
   expect(results.violations.map((v) => v.id)).toEqual([]);
 });
+
+test("axe: 404 error page", async ({ page }) => {
+  await page.goto("/opps/");
+  const results = await new AxeBuilder({ page }).withTags(TAGS).analyze();
+  expect(results.violations.map((v) => v.id)).toEqual([]);
+});

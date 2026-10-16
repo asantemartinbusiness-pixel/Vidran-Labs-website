@@ -16,7 +16,7 @@ export const sagePages: PageDoc[] = [
     title: "Sage",
     navLabel: "Sage",
     description: "Sage is a pre-release operating-system initiative from Vidran Labs, under active development, exploring a secure, coherent and efficient computing environment.",
-    metaProvenance: "brief",
+    metaProvenance: "provisional",
     blocks: [
       {
         type: "hero",
@@ -24,7 +24,7 @@ export const sagePages: PageDoc[] = [
         tone: "dark",
         eyebrow: "Sage · Pre-release",
         title: "Sage",
-        lede: "An operating-system initiative from Vidran Labs, under active development. Designed around security, coherence and efficient use of the hardware it runs on.",
+        lede: "A pre-release operating-system initiative from Vidran Labs, under active development.",
         actions: [
           { label: "Register for early access", href: "/products/sage/early-access/", variant: "primary" },
           { label: "Read the roadmap", href: "/products/sage/roadmap/", variant: "secondary" },

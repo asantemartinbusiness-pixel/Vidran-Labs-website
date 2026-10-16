@@ -6,11 +6,11 @@ export const researchPages: PageDoc[] = [
     title: "Research",
     description: "Vidran Labs research in systems, applied AI, data and digital infrastructure — the long-horizon work behind our products and engineering.",
     template: "standard",
-    metaProvenance: "brief",
+    metaProvenance: "provisional",
     blocks: [
       {
         type: "hero",
-        provenance: "brief",
+        provenance: "provisional",
         eyebrow: "Research",
         title: "Research that ends up in working systems",
         lede: "Our research culture exists to answer questions that matter for the systems we and our clients build.",

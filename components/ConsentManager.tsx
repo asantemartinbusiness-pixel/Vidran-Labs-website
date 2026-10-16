@@ -95,7 +95,9 @@ export function ConsentManager() {
             <strong>Strictly necessary</strong>
             <span className="meta">Always on</span>
             <p className="consent-row__desc">
-              Remembers the choices you make here. Stored only in your browser.
+              {hasOptional
+                ? "Remembers the choices you save here. Stored only in your browser."
+                : "Nothing is currently stored: there are no optional choices to remember."}
             </p>
           </div>
 

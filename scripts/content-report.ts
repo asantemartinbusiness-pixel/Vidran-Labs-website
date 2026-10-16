@@ -2,13 +2,23 @@
  * Content provenance report and release gate.
  *   npm run check:content   → report only
  *   npm run check:release   → exits 1 while anything provisional or unrecovered remains
+ *   prebuild (automatic)    → --if-production: enforces the gate whenever the build is configured
+ *                             for production, so a plain `npm run build` / Vercel deploy cannot
+ *                             ship provisional content.
  */
 import { contactRoutes } from "@/content/site";
 import { legacyRedirects } from "@/content/redirects";
 import { getArticles, pages } from "@/lib/content";
 import type { Provenance } from "@/lib/types";
 
-const release = process.argv.includes("--release");
+const productionBuild =
+  process.env.SITE_INDEXING === "on" || process.env.NEXT_PUBLIC_CONTENT_REVIEW === "off" || process.env.VERCEL_ENV === "production";
+const gateIfProduction = process.argv.includes("--if-production");
+if (gateIfProduction && !productionBuild) {
+  console.log("Review build: release gate not enforced (provisional content will be badged).");
+  process.exit(0);
+}
+const release = process.argv.includes("--release") || gateIfProduction;
 const tally: Record<Provenance, number> = { verified: 0, indexed: 0, brief: 0, provisional: 0 };
 const blockers: string[] = [];
 
@@ -44,6 +54,7 @@ console.log(`Release blockers: ${blockers.length}`);
 if (release) {
   if (blockers.length) {
     console.error("\nRELEASE GATE: FAIL\n" + blockers.map((b) => `  - ${b}`).join("\n"));
+    if (gateIfProduction) console.error("\nThis build is configured for production (indexing on, review markers off, or VERCEL_ENV=production).");
     process.exit(1);
   }
   console.log("RELEASE GATE: PASS");

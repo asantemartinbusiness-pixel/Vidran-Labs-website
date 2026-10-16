@@ -18,11 +18,24 @@ export function Header() {
   const toggleRef = useRef<HTMLButtonElement>(null);
   const triggerRefs = useRef(new Map<string, HTMLButtonElement>());
 
-  // Close everything on navigation.
-  useEffect(() => {
+  const closeAll = useCallback(() => {
     setOpenMenu(null);
     setMobileOpen(false);
-  }, [pathname]);
+  }, []);
+
+  // Close everything on navigation.
+  useEffect(closeAll, [pathname, closeAll]);
+
+  // Same-page links don't change the pathname, and the skip link targets <main>,
+  // which is inert while the panel is open — close menus on those clicks too.
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      const link = (e.target as Element | null)?.closest?.("a[href]");
+      if (link && (link.closest(".site-header") || link.classList.contains("skip-link"))) closeAll();
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, [closeAll]);
 
   // Desktop dropdowns: Escape returns focus to the trigger; outside click closes.
   useEffect(() => {

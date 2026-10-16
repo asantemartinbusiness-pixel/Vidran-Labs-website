@@ -120,7 +120,7 @@ export const trustPages: PageDoc[] = [
         provenance: "provisional",
         title: "Storage used by this website",
         items: [
-          { term: "vl-consent (local storage)", detail: "Strictly necessary. Remembers your cookie preferences if you save them. Stored only in your browser." },
+          { term: "vl-consent (local storage)", detail: "Strictly necessary. Written only if optional categories are offered and you save a choice; it then remembers that choice in your browser. While no optional categories exist, nothing is stored." },
           { term: "Optional cookies", detail: "None. This website does not currently use analytics, advertising or other optional cookies, so no consent banner is shown." },
         ],
       },

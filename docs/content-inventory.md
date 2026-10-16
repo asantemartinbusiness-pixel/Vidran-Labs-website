@@ -40,15 +40,15 @@ by `npm run check:content` (output reproduced below).
 ```
 Page provenance (blocks: verified / indexed / brief / provisional)
 
-/                                          0 / 1 / 3 / 2
-/company/                                  0 / 0 / 2 / 3
+/                                          0 / 1 / 1 / 4
+/company/                                  0 / 0 / 0 / 5
 /mission/                                  0 / 1 / 0 / 3
-/solutions/                                0 / 0 / 2 / 2
+/solutions/                                0 / 0 / 0 / 4
 /industries/                               0 / 0 / 0 / 4
-/products/                                 0 / 0 / 3 / 1
+/products/                                 0 / 0 / 0 / 4
 /work/                                     0 / 0 / 0 / 4
 /careers/                                  0 / 0 / 0 / 4
-/research/                                 0 / 0 / 1 / 3
+/research/                                 0 / 0 / 0 / 4
 /research-agenda/                          0 / 0 / 0 / 4
 /insights/                                 0 / 1 / 0 / 1
 /newsroom/                                 0 / 0 / 1 / 3
@@ -90,6 +90,6 @@ careers              careers@vidran.net           provisional
 media                media@vidran.net             provisional
 research             research@vidran.net          provisional
 
-Blocks: 129 total — verified 0, indexed 10, brief 23, provisional 96
-Release blockers: 70
+Blocks: 129 total — verified 0, indexed 10, brief 13, provisional 106
+Release blockers: 82
 ```

@@ -7,15 +7,14 @@ export const corePages: PageDoc[] = [
     description:
       "Vidran Labs builds software, artificial intelligence, automation, data and digital infrastructure for systems that matter, with research and products rooted in the Caribbean.",
     template: "standard",
-    metaProvenance: "brief",
+    metaProvenance: "provisional",
     blocks: [
       {
         type: "hero",
         provenance: "brief",
         eyebrow: "Vidran Labs",
         title: "Technology for Systems That Matter.",
-        lede:
-          "Software, artificial intelligence, automation, data and digital infrastructure — engineered for the institutions, businesses and communities that depend on them.",
+        lede: "Software, artificial intelligence, automation, data, digital infrastructure, intelligent systems, products and research.",
         actions: [
           { label: "Start a project", href: "/start-a-project/", variant: "primary" },
           { label: "Explore Sage", href: "/products/sage/", variant: "secondary" },
@@ -23,7 +22,7 @@ export const corePages: PageDoc[] = [
       },
       {
         type: "cards",
-        provenance: "brief",
+        provenance: "provisional",
         eyebrow: "What we do",
         title: "One engineering discipline across the whole system",
         intro:
@@ -51,7 +50,7 @@ export const corePages: PageDoc[] = [
       },
       {
         type: "cards",
-        provenance: "brief",
+        provenance: "provisional",
         eyebrow: "Products & research",
         title: "Long-horizon work alongside client delivery",
         columns: 2,
@@ -94,11 +93,11 @@ export const corePages: PageDoc[] = [
     title: "Company",
     description: "Vidran Labs Solutions, Inc. is a technology and engineering company working across software, AI, automation, data, digital infrastructure, products and research.",
     template: "standard",
-    metaProvenance: "brief",
+    metaProvenance: "provisional",
     blocks: [
       {
         type: "hero",
-        provenance: "brief",
+        provenance: "provisional",
         eyebrow: "Company",
         title: "An engineering institution for systems that matter",
         lede: "Vidran Labs Solutions, Inc. combines client engineering, product development and research under one technical culture.",
@@ -128,7 +127,7 @@ export const corePages: PageDoc[] = [
       },
       {
         type: "cards",
-        provenance: "brief",
+        provenance: "provisional",
         eyebrow: "Explore",
         title: "More about Vidran Labs",
         columns: 3,
@@ -152,7 +151,7 @@ export const corePages: PageDoc[] = [
     title: "Mission",
     description: "Our mission is to revolutionize the technological landscape of the Caribbean — with engineering that meets global standards.",
     template: "standard",
-    metaProvenance: "indexed",
+    metaProvenance: "provisional",
     blocks: [
       {
         type: "hero",
@@ -199,11 +198,11 @@ export const corePages: PageDoc[] = [
     title: "Solutions",
     description: "Software engineering, applied AI, automation, data and digital infrastructure services from Vidran Labs.",
     template: "standard",
-    metaProvenance: "brief",
+    metaProvenance: "provisional",
     blocks: [
       {
         type: "hero",
-        provenance: "brief",
+        provenance: "provisional",
         eyebrow: "Solutions",
         title: "Engineering for the systems your organisation runs on",
         lede: "From a single critical workflow to national-scale infrastructure, we design, build and hand over systems that can be operated with confidence.",
@@ -211,7 +210,7 @@ export const corePages: PageDoc[] = [
       },
       {
         type: "cards",
-        provenance: "brief",
+        provenance: "provisional",
         eyebrow: "Capabilities",
         title: "What we deliver",
         columns: 2,
@@ -302,18 +301,18 @@ export const corePages: PageDoc[] = [
     title: "Products",
     description: "Products and platforms developed by Vidran Labs, including Sage, a pre-release operating-system initiative under active development.",
     template: "standard",
-    metaProvenance: "brief",
+    metaProvenance: "provisional",
     blocks: [
       {
         type: "hero",
-        provenance: "brief",
+        provenance: "provisional",
         eyebrow: "Products",
         title: "Products built for the long term",
         lede: "Alongside client work, Vidran Labs develops its own products — starting with Sage.",
       },
       {
         type: "cards",
-        provenance: "brief",
+        provenance: "provisional",
         eyebrow: "Portfolio",
         title: "Current products",
         columns: 2,
@@ -334,7 +333,7 @@ export const corePages: PageDoc[] = [
       },
       {
         type: "notice",
-        provenance: "brief",
+        provenance: "provisional",
         tone: "info",
         title: "About product status",
         body: "We distinguish research direction, active development and generally available products. Sage is pre-release: capabilities described on its pages are design goals unless a release note says otherwise.",

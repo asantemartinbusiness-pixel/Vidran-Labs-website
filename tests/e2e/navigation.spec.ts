@@ -112,6 +112,19 @@ test.describe("mobile navigation", () => {
     await expect(page.getByRole("button", { name: "Menu" })).toBeFocused();
   });
 
+  test("same-page links and the skip link close the menu", async ({ page }) => {
+    await page.goto("/contact/");
+    await page.getByRole("button", { name: "Menu" }).click();
+    await page.locator("#mobile-nav .mobile-nav__link", { hasText: "Contact" }).click();
+    await expect(page.locator("#mobile-nav")).toBeHidden();
+    await expect(page.locator("main#main")).not.toHaveAttribute("inert", "");
+    await page.getByRole("button", { name: "Menu" }).click();
+    await page.locator(".skip-link").focus();
+    await page.keyboard.press("Enter");
+    await expect(page.locator("#mobile-nav")).toBeHidden();
+    await expect(page.locator("main#main")).toBeFocused();
+  });
+
   test("current section is pre-expanded and marked", async ({ page }) => {
     await page.goto("/mission/");
     await page.getByRole("button", { name: "Menu" }).click();

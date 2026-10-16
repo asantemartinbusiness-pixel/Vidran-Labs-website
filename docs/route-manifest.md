@@ -10,15 +10,15 @@ no horizontal overflow at 320–1920 px, link crawl).
 
 | Source & destination URL | Title | Template | Source availability | Sections | Implementation | Verification |
 |---|---|---|---|---|---|---|
-| `/` | Vidran Labs — Technology for Systems That Matter | standard | Indexed fragments only | hero, cards, prose, cards, articles, cta | Built · 2/6 blocks provisional | e2e ✓ · axe ✓ |
-| `/company/` | Company | standard | Not recoverable | hero, prose, definitions, cards, notice | Built · 3/5 blocks provisional | e2e ✓ · axe ✓ |
+| `/` | Vidran Labs — Technology for Systems That Matter | standard | Indexed fragments only | hero, cards, prose, cards, articles, cta | Built · 4/6 blocks provisional | e2e ✓ · axe ✓ |
+| `/company/` | Company | standard | Not recoverable | hero, prose, definitions, cards, notice | Built · 5/5 blocks provisional | e2e ✓ · axe ✓ |
 | `/mission/` | Mission | standard | Indexed fragments only | hero, prose, steps, cta | Built · 3/4 blocks provisional | e2e ✓ · axe ✓ |
-| `/solutions/` | Solutions | standard | Not recoverable | hero, cards, steps, cta | Built · 2/4 blocks provisional | e2e ✓ · axe ✓ |
+| `/solutions/` | Solutions | standard | Not recoverable | hero, cards, steps, cta | Built · 4/4 blocks provisional | e2e ✓ · axe ✓ |
 | `/industries/` | Industries | standard | Not recoverable | hero, cards, prose, cta | Built · 4/4 blocks provisional | e2e ✓ · axe ✓ |
-| `/products/` | Products | standard | Not recoverable | hero, cards, notice, cta | Built · 1/4 blocks provisional | e2e ✓ · axe ✓ |
+| `/products/` | Products | standard | Not recoverable | hero, cards, notice, cta | Built · 4/4 blocks provisional | e2e ✓ · axe ✓ |
 | `/work/` | Work | standard | Not recoverable | hero, notice, definitions, cta | Built · 4/4 blocks provisional | e2e ✓ · axe ✓ |
 | `/careers/` | Careers | standard | Not recoverable | hero, definitions, notice, enquiry | Built · 4/4 blocks provisional | e2e ✓ · axe ✓ |
-| `/research/` | Research | standard | Not recoverable | hero, cards, definitions, enquiry | Built · 3/4 blocks provisional | e2e ✓ · axe ✓ |
+| `/research/` | Research | standard | Not recoverable | hero, cards, definitions, enquiry | Built · 4/4 blocks provisional | e2e ✓ · axe ✓ |
 | `/research-agenda/` | Research Agenda | standard | Not recoverable | hero, status, notice, cta | Built · 4/4 blocks provisional | e2e ✓ · axe ✓ |
 | `/insights/` | Insights | standard | Not recoverable | hero, articles | Built · 1/2 blocks provisional | e2e ✓ · axe ✓ |
 | `/newsroom/` | Newsroom | standard | Not recoverable | hero, notice, definitions, enquiry | Built · 3/4 blocks provisional | e2e ✓ · axe ✓ |
@@ -43,14 +43,14 @@ no horizontal overflow at 320–1920 px, link crawl).
 | `/privacy-policy/` | Privacy Policy | legal | Not recoverable | hero, notice, definitions | Built · 3/3 blocks provisional | e2e ✓ · axe ✓ |
 | `/cookie-policy/` | Cookie Policy | legal | Not recoverable | hero, notice, definitions, prose | Built · 4/4 blocks provisional | e2e ✓ · axe ✓ |
 | `/terms-service/` | Terms of Service | legal | Not recoverable | hero, notice, prose | Built · 3/3 blocks provisional | e2e ✓ · axe ✓ |
-| `/opps/` | Page Not Found | error | Indexed fragments only | hero, sitemap | Built · content from source/brief | e2e ✓ · axe ✓ |
+| `/opps/` | Page Not Found | error | Indexed fragments only | hero, sitemap | Built · content from source/brief | e2e: 404 status + content |
 
 ## Articles (2)
 
 | URL | Title | Template | Source availability | Sections | Implementation | Verification |
 |---|---|---|---|---|---|---|
-| `/digital-infrastructure-is-economic-infrastructure/` | Digital Infrastructure Is Economic Infrastructure | article | Title only (brief) | header, body notice | Built · body pending-recovery | e2e ✓ · axe ✓ |
-| `/why-caribbean-technology-needs-regional-context/` | Why Caribbean Technology Needs Regional Context | article | Title only (brief) | header, body notice | Built · body pending-recovery | e2e ✓ · axe ✓ |
+| `/digital-infrastructure-is-economic-infrastructure/` | Digital Infrastructure Is Economic Infrastructure | article | Title only (brief) | header, body notice | Built · body pending-recovery · noindex, not in sitemap | e2e ✓ · axe ✓ |
+| `/why-caribbean-technology-needs-regional-context/` | Why Caribbean Technology Needs Regional Context | article | Title only (brief) | header, body notice | Built · body pending-recovery · noindex, not in sitemap | e2e ✓ · axe ✓ |
 
 ## Legacy URLs found in search indexes (earlier site generation)
 
@@ -67,6 +67,6 @@ These are not in the mandated inventory. They currently 404 on the original host
 
 | Case | Behaviour |
 |---|---|
-| `/opps/` | Original custom "Page Not Found" page preserved at its URL, HTTP 200, `noindex`. |
+| `/opps/` | Original custom "Page Not Found" content preserved at its URL, served with a genuine HTTP 404 (not a soft-404). |
 | Any unknown URL | Genuine HTTP 404 rendering the same error-page design (`app/not-found.tsx`). No blanket redirect to home. |
 | URL without trailing slash | 308 to the trailing-slash canonical form. |

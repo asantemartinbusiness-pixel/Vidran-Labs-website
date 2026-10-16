@@ -64,6 +64,20 @@ test.describe("enquiry pathways", () => {
 
     await page.getByRole("button", { name: "Start over" }).click();
     await expect(page.getByLabel("Your name")).toHaveValue("");
+    await expect(page.getByLabel("Your name")).toBeFocused();
+  });
+
+  test("email-length limit error persists until the message is actually short enough", async ({ page }) => {
+    await page.goto("/contact/");
+    await page.getByLabel("Your name").fill("Zoë");
+    await page.getByLabel("How can we help?").fill("é".repeat(400)); // 400 chars, ~2,400 encoded
+    await page.getByRole("button", { name: "Prepare email" }).click();
+    await expect(page.locator(".form-summary")).toContainText("too long");
+    await page.getByLabel("How can we help?").press("End");
+    await page.getByLabel("How can we help?").press("Backspace");
+    await expect(page.locator(".form-summary")).toContainText("too long");
+    await page.getByLabel("How can we help?").fill("é".repeat(100));
+    await expect(page.locator(".form-summary")).toHaveCount(0);
   });
 
   test("text fields enforce maximum length in the browser", async ({ page }) => {

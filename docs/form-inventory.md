@@ -41,11 +41,12 @@ Every pathway also offers a direct `mailto:` link with the subject pre-filled. D
 
 | Aspect | Implementation |
 |---|---|
-| Validation | `lib/enquiry.ts`: required, trimmed, max length (text 80–300, message 1200), select whitelist, URL format. Re-validates each field after the first failed attempt. |
-| Sanitisation | Control characters stripped; line breaks collapsed in single-line fields (prevents header-style injection into the body); parameters encoded with `encodeURIComponent` so `&cc=` etc. cannot add mailto headers. Unit-tested. |
+| Validation | `lib/enquiry.ts`: required, trimmed, max length (text 80–300, message 1200), select whitelist, URL format. After the first failed attempt the whole enquiry is re-validated on every change, including the overall email-length limit. Messages: "Enter your name.", "Choose area of work.", "Enter your message." |
+| Sanitisation | Control characters and bidirectional overrides (U+202A–202E, U+2066–2069) stripped; line breaks collapsed in single-line fields (prevents header-style injection into the body); parameters encoded with `encodeURIComponent` so `&cc=` etc. cannot add mailto headers. Unit-tested. |
 | URL limit | Refuses (with a clear message) to build a mailto longer than 2,000 characters instead of truncating. |
 | Errors | Error summary (`role="alert"`) receives focus and links to each field; fields get `aria-invalid` and `aria-describedby` pointing at inline errors and hints. |
-| Success state | `role="status"`, focused: "Your email app should now open… Nothing has been sent yet." Offers Open again / Copy message / Start over. |
+| Success state | `role="status"`, focused: "Your email app should now open… Nothing has been sent yet." Offers Open again / Copy message / Start over (returns focus to the first field). |
+| Length limit | Mail clients reject very long `mailto:` URLs, so the encoded link is capped at 2,000 characters. Non-Latin text encodes to several characters each, so a message can hit this cap before the 1,200-character field limit; the error says so and persists until the message is short enough. |
 | Duplicate submission | Form is replaced by the status panel after hand-off. |
 | Privacy | Footnote on every form; Privacy policy describes the mechanism. |
 | Consent | Not required: no data is processed by the website. |

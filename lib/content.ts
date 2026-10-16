@@ -62,7 +62,16 @@ export function getArticle(p: string): ArticleDoc | undefined {
   return getArticles().find((a) => a.path === n);
 }
 
-/** Every routable path, for static generation, sitemap and tests. */
+/**
+ * Every path served with HTTP 200, for static generation and tests. Error-template
+ * pages (the original /opps/ "Page Not Found") are excluded so they return a genuine
+ * 404 rendered with the same content, instead of a soft-404.
+ */
 export function allPaths(): string[] {
-  return [...pages.map((p) => p.path), ...getArticles().map((a) => a.path)];
+  return [...pages.filter((p) => p.template !== "error").map((p) => p.path), ...getArticles().map((a) => a.path)];
+}
+
+/** Articles whose text is not yet restored are thin pages: keep them out of search. */
+export function isIndexableArticle(a: ArticleDoc): boolean {
+  return a.bodyStatus === "recovered";
 }

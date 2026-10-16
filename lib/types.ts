@@ -101,6 +101,8 @@ export interface EnquiryField {
   options?: string[];
   hint?: string;
   autoComplete?: string;
+  /** Error shown when a required field is empty; defaults to "Enter …" / "Choose …". */
+  requiredMessage?: string;
 }
 
 export interface ContactRoute {

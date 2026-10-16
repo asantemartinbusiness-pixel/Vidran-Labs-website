@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArticleView, PageView } from "@/components/PageView";
-import { allPaths, getArticle, getPage } from "@/lib/content";
+import { allPaths, getArticle, getPage, isIndexableArticle } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 
 // Only known content paths exist; everything else is a genuine 404.
@@ -22,7 +22,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = getPage(path);
   if (page) return pageMetadata({ path, title: page.title, description: page.description, noindex: page.noindex });
   const article = getArticle(path);
-  if (article) return pageMetadata({ path, title: article.title, description: article.description, type: "article" });
+  if (article)
+    return pageMetadata({ path, title: article.title, description: article.description, type: "article", noindex: !isIndexableArticle(article) });
   return {};
 }
 

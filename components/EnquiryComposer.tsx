@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useId, useRef, useState } from "react";
-import { buildMailto, composeEnquiry, validateField, type EnquiryErrors, type EnquiryValues } from "@/lib/enquiry";
+import { buildMailto, composeEnquiry, type EnquiryErrors, type EnquiryValues } from "@/lib/enquiry";
 import type { ContactRoute } from "@/lib/types";
 
 type Prepared = { href: string; subject: string; body: string };
@@ -21,17 +21,13 @@ export function EnquiryComposer({ route }: { route: ContactRoute }) {
   const directHref = buildMailto(route.email, route.subjectPrefix);
 
   const update = (name: string, value: string) => {
-    setValues((v) => ({ ...v, [name]: value }));
-    // After a failed attempt, re-validate as the visitor corrects fields.
+    const next = { ...values, [name]: value };
+    setValues(next);
+    // After a failed attempt, re-validate the whole enquiry as the visitor corrects it,
+    // including the overall email-length limit (so that error can't vanish prematurely).
     if (submitted) {
-      const field = route.fields.find((f) => f.name === name)!;
-      setErrors((prev) => {
-        const next = { ...prev };
-        const err = validateField(field, value);
-        if (err) next[name] = err;
-        else delete next[name];
-        return next;
-      });
+      const result = composeEnquiry(route, next);
+      setErrors(result.ok ? {} : result.errors);
     }
   };
 
@@ -68,6 +64,8 @@ export function EnquiryComposer({ route }: { route: ContactRoute }) {
     setErrors({});
     setSubmitted(false);
     setCopyState("idle");
+    // Return keyboard and screen-reader users to the start of the form.
+    requestAnimationFrame(() => document.getElementById(fieldId(route.fields[0]!.name))?.focus());
   };
 
   if (prepared) {

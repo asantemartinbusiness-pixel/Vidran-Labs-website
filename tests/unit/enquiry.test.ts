@@ -87,3 +87,16 @@ describe("mailto composition", () => {
     }
   });
 });
+
+describe("bidirectional control characters", () => {
+  it("are stripped so text cannot be visually disguised", () => {
+    expect(sanitise("invoice‮txt.exe", false)).toBe("invoicetxt.exe");
+  });
+});
+
+describe("error messages", () => {
+  it("read naturally for text, select and message fields", () => {
+    const errors = validateEnquiry(getContactRoute("start-a-project"), {});
+    expect(errors).toEqual({ name: "Enter your name.", area: "Choose area of work.", message: "Enter your message." });
+  });
+});

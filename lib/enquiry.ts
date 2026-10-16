@@ -7,8 +7,9 @@ export type EnquiryErrors = Record<string, string>;
 export const MAX_MAILTO_LENGTH = 2000;
 
 // Strip control characters (except tab/newline) that could be used for header
-// injection or that render badly in mail clients.
-const CONTROL_CHARS = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
+// injection or that render badly in mail clients, plus bidirectional overrides
+// that can visually disguise text (e.g. U+202E).
+const CONTROL_CHARS = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F\u202A-\u202E\u2066-\u2069]/g;
 
 export function sanitise(value: string, multiline: boolean): string {
   let v = value.replace(CONTROL_CHARS, "").replace(/\r\n?/g, "\n");
@@ -18,7 +19,9 @@ export function sanitise(value: string, multiline: boolean): string {
 
 export function validateField(field: EnquiryField, raw: string | undefined): string | null {
   const value = sanitise(raw ?? "", field.kind === "textarea");
-  if (field.required && value.length === 0) return `Enter ${field.label.toLowerCase()}.`;
+  if (field.required && value.length === 0) {
+    return field.requiredMessage ?? `${field.kind === "select" ? "Choose" : "Enter"} ${field.label.toLowerCase()}.`;
+  }
   if (value.length > field.maxLength) return `${field.label} must be ${field.maxLength} characters or fewer.`;
   if (field.kind === "select" && value && field.options && !field.options.includes(value)) {
     return `Choose a valid option for ${field.label.toLowerCase()}.`;

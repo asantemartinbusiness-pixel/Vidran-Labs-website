@@ -40,11 +40,14 @@ and mobile (Pixel 7) Chromium. All results from the run recorded in `docs/verifi
 
 ## Manual QA checklist (performed in Chromium during development)
 
-- [x] Tab order follows visual order on home, Sage roadmap, start-a-project (desktop and 375px).
-- [x] Focus ring visible on light, alt and dark surfaces (header, cards, footer, dark hero buttons).
-- [x] 200% browser zoom on `/products/sage/roadmap/` at 1280px: no clipping; status table stacks.
-- [x] Error summary announced and focused; inline errors associated with inputs.
-- [x] Mobile menu cannot be tabbed behind; closes on navigation.
+Performed with scripted Chromium checks (scripts kept out of the repo; results and screenshots in `docs/evidence/`):
+
+- [x] Tab order follows visual order on `/start-a-project/` (skip link → logo → nav → CTA → breadcrumbs → fields → submit → footnote links → footer).
+- [x] Focus ring visible on light, alt and dark surfaces (`focus-dark-hero.png`, `focus-footer.png`). The dark-surface ring was initially ~2.3:1 and was fixed to use the light accent.
+- [x] Forced-colors (Windows High Contrast) mode: 2px `CanvasText` outline on focused buttons, card links and footer links (fixed after adversarial review).
+- [x] 200% zoom equivalent (640 CSS px) on `/products/sage/roadmap/`: no horizontal overflow; the status table stacks; the only "clipped" nodes are intentionally visually-hidden table caption/header (`zoom-200-roadmap.png`).
+- [x] Error summary focused, links move focus to fields; inline errors associated via `aria-describedby` (`form-errors-1440.jpg`).
+- [x] Mobile menu: focus cannot reach content behind it in 30 Tab presses; panel fills the viewport under the header (`mobile-menu-375.png`). Initially broken (clipped by a `backdrop-filter` containing block) and fixed.
 - [ ] Screen-reader pass with NVDA/JAWS/VoiceOver — **not performed** (no assistive technology available in this environment).
 - [ ] Firefox and Safari/WebKit — **not tested** (only Chromium available in this environment).
 - [ ] Real email client hand-off on iOS/Android/desktop — **not tested** (headless browser does not open mail apps).

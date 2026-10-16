@@ -9,7 +9,7 @@ export const contactPages: PageDoc[] = [
     title: "Contact",
     description: "Find the right contact route for Vidran Labs: start a project, institutional and procurement, partnerships, support, media, careers and research.",
     template: "standard",
-    metaProvenance: "indexed",
+    metaProvenance: "provisional",
     blocks: [
       {
         type: "hero",
@@ -45,7 +45,7 @@ export const contactPages: PageDoc[] = [
     title: "Start a Project",
     description: "Start a project with Vidran Labs — software, AI, automation, data and digital infrastructure engineering.",
     template: "standard",
-    metaProvenance: "indexed",
+    metaProvenance: "provisional",
     blocks: [
       {
         type: "hero",
@@ -73,7 +73,7 @@ export const contactPages: PageDoc[] = [
     title: "Institutional & Procurement",
     description: "Procurement information for governments, regulated institutions and enterprise buyers working with Vidran Labs.",
     template: "standard",
-    metaProvenance: "indexed",
+    metaProvenance: "provisional",
     blocks: [
       {
         type: "hero",
@@ -109,7 +109,7 @@ export const contactPages: PageDoc[] = [
     title: "Partnerships",
     description: "Technology, research, delivery and ecosystem partnerships with Vidran Labs.",
     template: "standard",
-    metaProvenance: "indexed",
+    metaProvenance: "provisional",
     blocks: [
       {
         type: "hero",
@@ -146,7 +146,7 @@ export const contactPages: PageDoc[] = [
     title: "Support",
     description: "Support for current Vidran Labs clients and engagements.",
     template: "standard",
-    metaProvenance: "indexed",
+    metaProvenance: "provisional",
     blocks: [
       {
         type: "hero",

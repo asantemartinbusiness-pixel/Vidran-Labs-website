@@ -138,7 +138,15 @@ export const legalNav: NavItem[] = [
 
 const nameField: EnquiryField = { name: "name", label: "Your name", kind: "text", required: true, maxLength: 120, autoComplete: "name" };
 const orgField: EnquiryField = { name: "organisation", label: "Organisation", kind: "text", required: false, maxLength: 160, autoComplete: "organization" };
-const message = (label: string, hint?: string): EnquiryField => ({ name: "message", label, kind: "textarea", required: true, maxLength: 1200, hint });
+const message = (label: string, hint?: string): EnquiryField => ({
+  name: "message",
+  label,
+  kind: "textarea",
+  required: true,
+  maxLength: 1200,
+  hint,
+  requiredMessage: "Enter your message.",
+});
 
 /**
  * Recipient addresses could NOT be recovered from the source site (see

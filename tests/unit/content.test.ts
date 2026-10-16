@@ -28,7 +28,8 @@ function linksIn(block: Block): string[] {
 
 describe("route inventory", () => {
   it("implements every route in the mandated inventory", () => {
-    const missing = REQUIRED.filter((p) => !paths.has(p));
+    // /opps/ is implemented as the 404 response (same content), so it is not a 200 path.
+    const missing = REQUIRED.filter((p) => (p === "/opps/" ? !pages.some((pg) => pg.path === p) : !paths.has(p)));
     expect(missing).toEqual([]);
   });
 

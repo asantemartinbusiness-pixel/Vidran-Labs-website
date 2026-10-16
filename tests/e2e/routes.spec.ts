@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { PAGES, PATHS, SITE_URL } from "./helpers";
+import { ARTICLES, PAGES, PATHS, SITE_URL } from "./helpers";
 
 test.describe("every route", () => {
   for (const path of PATHS) {
@@ -46,9 +46,10 @@ test.describe("status codes", () => {
     expect((await request.get("/products/sage/not-a-page/")).status()).toBe(404);
   });
 
-  test("/opps/ keeps its content but is not indexable", async ({ page }) => {
-    await page.goto("/opps/");
-    await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
+  test("/opps/ shows the original Page Not Found content with a genuine 404 status", async ({ page }) => {
+    const res = await page.goto("/opps/");
+    expect(res?.status()).toBe(404);
+    await expect(page.getByRole("heading", { level: 1, name: "Page not found" })).toBeVisible();
   });
 
   test("proposed legacy redirects are temporary until approved", async ({ request }) => {
@@ -118,10 +119,10 @@ test.describe("security headers", () => {
 });
 
 test.describe("search infrastructure", () => {
-  test("sitemap lists every indexable page and article", async ({ request }) => {
+  test("sitemap lists every indexable page and no thin or error pages", async ({ request }) => {
     const xml = await (await request.get("/sitemap.xml")).text();
-    const indexable = PATHS.filter((p) => !PAGES.find((pg) => pg.path === p)?.noindex);
-    for (const p of indexable) expect(xml).toContain(`<loc>${SITE_URL}${p}</loc>`);
+    for (const p of PAGES.filter((pg) => !pg.noindex && pg.template !== "error")) expect(xml).toContain(`<loc>${SITE_URL}${p.path}</loc>`);
+    for (const a of ARTICLES) expect(xml.includes(`<loc>${SITE_URL}${a.path}</loc>`)).toBe(a.bodyStatus === "recovered");
     expect(xml).not.toContain("/opps/");
   });
 

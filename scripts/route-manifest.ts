@@ -14,11 +14,12 @@ const rows = pages.map((p) => {
   const types = p.blocks.map((b) => b.type).join(", ");
   const source = INDEXED.has(p.path) ? "Indexed fragments only" : LABEL_ONLY.has(p.path) ? "Route label indexed (on /contact/)" : "Not recoverable";
   const status = t.provisional === 0 ? "Built · content from source/brief" : `Built · ${t.provisional}/${p.blocks.length} blocks provisional`;
-  return `| \`${p.path}\` | ${p.title} | ${p.template} | ${source} | ${types} | ${status} | e2e ✓ · axe ✓ |`;
+  const verification = p.template === "error" ? "e2e: 404 status + content" : "e2e ✓ · axe ✓";
+  return `| \`${p.path}\` | ${p.title} | ${p.template} | ${source} | ${types} | ${status} | ${verification} |`;
 });
 
 const articles = getArticles().map(
-  (a) => `| \`${a.path}\` | ${a.title} | article | Title only (brief) | header, body notice | Built · body ${a.bodyStatus} | e2e ✓ · axe ✓ |`,
+  (a) => `| \`${a.path}\` | ${a.title} | article | Title only (brief) | header, body notice | Built · body ${a.bodyStatus}${a.bodyStatus === "recovered" ? "" : " · noindex, not in sitemap"} | e2e ✓ · axe ✓ |`,
 );
 
 const redirects = legacyRedirects.map((r) => `| \`${r.from}\` | \`${r.to}\` | ${r.permanent ? "308" : "307"} | ${r.status} | ${r.evidence} |`);
@@ -56,7 +57,7 @@ ${redirects.join("\n")}
 
 | Case | Behaviour |
 |---|---|
-| \`/opps/\` | Original custom "Page Not Found" page preserved at its URL, HTTP 200, \`noindex\`. |
+| \`/opps/\` | Original custom "Page Not Found" content preserved at its URL, served with a genuine HTTP 404 (not a soft-404). |
 | Any unknown URL | Genuine HTTP 404 rendering the same error-page design (\`app/not-found.tsx\`). No blanket redirect to home. |
 | URL without trailing slash | 308 to the trailing-slash canonical form. |
 `;
