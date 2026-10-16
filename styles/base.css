@@ -1,0 +1,203 @@
+/* Reset & base elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--nav-h) + var(--space-36));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-vellum);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+body.is-locked {
+  overflow: hidden;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+/* Only two weights exist in this system: 300 for display, 400 for everything else. */
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: var(--weight-regular);
+  text-wrap: balance;
+}
+
+/* Inline emphasis only (never headings): a half-step heavier, still restrained. */
+strong,
+b {
+  font-weight: 500;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  /* Transparent outline is painted in forced-colors mode, where box-shadow is dropped. */
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-small);
+}
+
+.on-dark :focus-visible {
+  box-shadow: var(--focus-ring-on-dark);
+}
+
+@media (forced-colors: active) {
+  :focus-visible {
+    outline: 2px solid CanvasText;
+  }
+}
+
+::selection {
+  background: var(--color-carbon-warm);
+  color: var(--color-paper-white);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-16);
+  top: var(--space-8);
+  z-index: 100;
+  padding: var(--space-12) var(--space-24);
+  border-radius: var(--radius-pills);
+  background: var(--color-carbon-warm);
+  color: var(--color-paper-white);
+  font-size: var(--text-body-sm);
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Inline rich text (from content strings) */
+.rich a,
+.link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: text-decoration-thickness var(--dur-fast) var(--ease);
+}
+
+.rich a:hover,
+.link:hover {
+  text-decoration-thickness: 2px;
+}
+
+.rich code {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.9em;
+}
+
+/* Section label — 4px solid square + uppercase micro-type. The signature device. */
+.eyebrow,
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-size: var(--text-label);
+  line-height: var(--leading-body-sm);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.eyebrow::before,
+.label::before {
+  content: "";
+  flex: none;
+  width: 4px;
+  height: 4px;
+  background: currentColor;
+}
+
+.on-dark .eyebrow {
+  color: var(--color-text-on-dark);
+}
+
+.meta {
+  font-size: var(--text-label);
+  line-height: var(--leading-body-sm);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}

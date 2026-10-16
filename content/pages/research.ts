@@ -1,0 +1,153 @@
+import type { PageDoc } from "@/lib/types";
+
+export const researchPages: PageDoc[] = [
+  {
+    path: "/research/",
+    title: "Research",
+    description: "Vidran Labs research in systems, applied AI, data and digital infrastructure — the long-horizon work behind our products and engineering.",
+    template: "standard",
+    metaProvenance: "provisional",
+    blocks: [
+      {
+        type: "hero",
+        provenance: "provisional",
+        eyebrow: "Research",
+        title: "Research that ends up in working systems",
+        lede: "Our research culture exists to answer questions that matter for the systems we and our clients build.",
+        actions: [{ label: "Read the research agenda", href: "/research-agenda/", variant: "primary" }],
+      },
+      {
+        type: "cards",
+        provenance: "provisional",
+        eyebrow: "Areas",
+        title: "Where we focus",
+        columns: 2,
+        items: [
+          { title: "Systems & operating environments", body: "Operating-system design, isolation, update models and efficient use of hardware — the foundation of Sage.", href: "/products/sage/architecture/" },
+          { title: "Applied & responsible AI", body: "Methods to evaluate, constrain and explain AI behaviour in settings where errors carry real cost.", href: "/responsible-technology/" },
+          { title: "Resilient digital infrastructure", body: "Architectures that degrade gracefully under limited connectivity, power disruption and small-scale operations." },
+          { title: "Data for institutions", body: "Practical data governance, interoperability and stewardship for public and private institutions." },
+        ],
+      },
+      {
+        type: "definitions",
+        provenance: "provisional",
+        eyebrow: "Method",
+        title: "How we conduct research",
+        items: [
+          { term: "Status is explicit", detail: "Every result is labelled as exploratory, in development or validated. We do not present direction as delivered capability." },
+          { term: "Evidence is shared", detail: "Where we can, we publish methods and limitations alongside conclusions." },
+          { term: "Context is a variable", detail: "We test assumptions against regional conditions rather than importing them unexamined." },
+        ],
+      },
+      {
+        type: "enquiry",
+        provenance: "provisional",
+        route: "research",
+        title: "Propose a research collaboration",
+        intro: "For universities, institutes and public bodies. This prepares an email in your own email app.",
+      },
+    ],
+  },
+  {
+    path: "/research-agenda/",
+    title: "Research Agenda",
+    description: "The open questions Vidran Labs is investigating across operating systems, applied AI, resilient infrastructure and data.",
+    template: "standard",
+    metaProvenance: "provisional",
+    blocks: [
+      {
+        type: "hero",
+        provenance: "provisional",
+        eyebrow: "Research agenda",
+        title: "Questions we are working on",
+        lede: "An agenda is a statement of intent, not a list of results. Each item below shows its current status.",
+      },
+      {
+        type: "status",
+        provenance: "provisional",
+        eyebrow: "Agenda",
+        title: "Open questions",
+        rows: [
+          { item: "How can an operating system make secure defaults the easiest path for users and developers?", status: "in-development", note: "Informs Sage security and permissions design." },
+          { item: "What update model keeps devices current where bandwidth is limited or expensive?", status: "research", note: "Relevant to Sage and to infrastructure clients." },
+          { item: "How should AI-assisted decisions be evaluated before they are used in public services?", status: "research", note: "Evaluation frameworks, documentation and human review." },
+          { item: "What does graceful degradation look like for digital services during regional disruption?", status: "exploratory", note: "Offline-first patterns, recovery objectives and continuity planning." },
+          { item: "How can small institutions govern data without large data teams?", status: "exploratory", note: "Lightweight stewardship models and tooling." },
+        ],
+      },
+      {
+        type: "notice",
+        provenance: "provisional",
+        tone: "pending",
+        title: "Original agenda pending recovery",
+        body: "The published Research Agenda could not be recovered from the source site. The items above are drafted for review and will be replaced or confirmed by Vidran Labs.",
+      },
+      {
+        type: "cta",
+        provenance: "provisional",
+        title: "Working on similar questions?",
+        actions: [{ label: "Propose a collaboration", href: "/research/#enquiry", variant: "primary" }],
+      },
+    ],
+  },
+  {
+    path: "/insights/",
+    title: "Insights",
+    description: "Essays and analysis from Vidran Labs on technology, infrastructure and the Caribbean.",
+    template: "standard",
+    metaProvenance: "provisional",
+    blocks: [
+      {
+        type: "hero",
+        provenance: "provisional",
+        eyebrow: "Insights",
+        title: "Thinking about systems that matter",
+        lede: "Essays on technology, infrastructure, research and the Caribbean context.",
+      },
+      { type: "articles", provenance: "indexed", title: "All insights" },
+    ],
+  },
+  {
+    path: "/newsroom/",
+    title: "Newsroom",
+    description: "Announcements, media resources and press contact for Vidran Labs.",
+    template: "standard",
+    metaProvenance: "provisional",
+    blocks: [
+      {
+        type: "hero",
+        provenance: "provisional",
+        eyebrow: "Newsroom",
+        title: "News and media",
+        lede: "Announcements from Vidran Labs and resources for journalists.",
+      },
+      {
+        type: "notice",
+        provenance: "provisional",
+        tone: "pending",
+        title: "Announcements pending recovery",
+        body: "No newsroom announcements could be recovered from the source site. Announcements will be published here from verified material.",
+      },
+      {
+        type: "definitions",
+        provenance: "brief",
+        eyebrow: "Fact sheet",
+        title: "About Vidran Labs",
+        items: [
+          { term: "Legal name", detail: "Vidran Labs Solutions, Inc." },
+          { term: "Positioning", detail: "Technology for Systems That Matter." },
+          { term: "Focus", detail: "Software, artificial intelligence, automation, data, digital infrastructure, intelligent systems, products and research." },
+          { term: "Product", detail: "Sage — a pre-release operating-system initiative under active development." },
+        ],
+      },
+      {
+        type: "enquiry",
+        provenance: "provisional",
+        route: "media",
+        title: "Media enquiries",
+        intro: "For journalists and publications. This prepares an email in your own email app.",
+      },
+    ],
+  },
+];

@@ -1,0 +1,100 @@
+/*
+ * Vidran Labs design tokens — "factory-floor blueprint on warm vellum".
+ * Monochrome by design: hierarchy comes from scale, weight, spacing and shape,
+ * never hue. Elevation is tonal (vellum → white → carbon → onyx), never shadow.
+ * Visual direction adopted from a style reference (docs/design-system-audit.md);
+ * brand identity (logo, name, copy) remains Vidran Labs'.
+ */
+:root {
+  /* Colour — surfaces */
+  --color-vellum: #f0efe9; /* L0 page canvas */
+  --color-paper-white: #ffffff; /* L1 cards, panels, inputs */
+  --color-carbon-warm: #322d2a; /* L2 nav pill, filled buttons, text, borders */
+  --color-onyx-depth: #0f0e12; /* L3 footer terminator */
+
+  /* Colour — text */
+  --color-text: var(--color-carbon-warm); /* 11.8:1 on vellum */
+  /* Derived (not in reference): Mercury #8b8b8b fails AA for text (2.96:1), so
+     secondary text uses a warm grey that passes on vellum (5.1:1) and white (5.9:1). */
+  --color-text-muted: #6a635e;
+  --color-text-on-dark: #ffffff;
+  --color-text-on-dark-muted: #b9b4ae; /* 6.6:1 on carbon, 7.6:1 on onyx */
+  --color-mercury: #8b8b8b; /* decorative / disabled only — never body text */
+
+  /* Colour — lines */
+  --color-line: var(--color-carbon-warm);
+  --color-line-soft: rgb(50 45 42 / 0.18);
+  --color-line-on-dark: rgb(255 255 255 / 0.18);
+
+  /* Colour — semantic (functional exception: form errors must be unmistakable) */
+  --color-error: #9b2c2c; /* 6.5:1 on vellum, 7.5:1 on white */
+
+  /* Typography — a single geometric sans, two weights */
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --weight-light: 300;
+  --weight-regular: 400;
+
+  --text-label: 0.75rem; /* 12 */
+  --text-body-sm: 0.875rem; /* 14 */
+  --text-body: 1rem; /* 16 */
+  --text-subheading: 1.375rem; /* 22 */
+  --text-heading: clamp(1.625rem, 1.3rem + 1.2vw, 2rem); /* 26 → 32 */
+  --text-display: clamp(2.25rem, 1.6rem + 2.6vw, 3.25rem); /* 36 → 52 */
+
+  --leading-display: 1;
+  --leading-heading: 1.2;
+  --leading-subheading: 1.3;
+  --leading-body: 1.4;
+  --leading-body-sm: 1.3;
+  --tracking: 0.01em;
+  --tracking-label: 0.12em;
+
+  /* Spacing — 4px base */
+  --space-4: 0.25rem;
+  --space-8: 0.5rem;
+  --space-12: 0.75rem;
+  --space-16: 1rem;
+  --space-24: 1.5rem;
+  --space-36: 2.25rem;
+  --space-48: 3rem;
+  --space-60: 3.75rem;
+  --space-96: 6rem;
+  --space-120: 7.5rem;
+  --section-gap: var(--space-48);
+  --section-y: clamp(3rem, 2rem + 4vw, 6rem);
+  --card-padding: 1.375rem; /* 22 */
+  --element-gap: var(--space-8);
+
+  /* Layout */
+  --container: 75rem; /* 1200 */
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2rem);
+  --nav-h: 4.5rem;
+  --measure: 62ch;
+
+  /* Shape — generous rounding, nothing below 8px on containers */
+  --radius-small: 8px;
+  --radius-body: 12px;
+  --radius-nav: 16px;
+  --radius-buttons: 16px;
+  --radius-cards: clamp(32px, 6vw, 80px); /* porthole panels; scales down on phones */
+  --radius-pills: 100px;
+
+  /* Interaction */
+  --focus-ring: 0 0 0 2px var(--color-vellum), 0 0 0 4px var(--color-carbon-warm);
+  --focus-ring-on-dark: 0 0 0 2px var(--color-carbon-warm), 0 0 0 4px var(--color-paper-white);
+  --tap-min: 44px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast: 120ms;
+  --dur: 220ms;
+  --dur-slow: 320ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur: 0ms;
+    --dur-slow: 0ms;
+  }
+}
