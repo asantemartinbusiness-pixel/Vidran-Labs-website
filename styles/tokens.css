@@ -1,100 +1,94 @@
 /*
- * Vidran Labs design tokens.
- * PROVISIONAL: original brand colours and typefaces could not be recovered
- * (docs/design-system-audit.md). Values are chosen to meet WCAG 2.2 AA and an
- * editorial/institutional direction; swap here when brand assets are supplied.
+ * Vidran Labs design tokens — "factory-floor blueprint on warm vellum".
+ * Monochrome by design: hierarchy comes from scale, weight, spacing and shape,
+ * never hue. Elevation is tonal (vellum → white → carbon → onyx), never shadow.
+ * Visual direction adopted from a style reference (docs/design-system-audit.md);
+ * brand identity (logo, name, copy) remains Vidran Labs'.
  */
 :root {
-  /* Colour — neutrals */
-  --color-ink: #0d1117;
-  --color-ink-2: #39404a;
-  --color-ink-3: #5a626d;
-  --color-paper: #f7f6f2;
-  --color-paper-2: #efede6;
-  --color-surface: #ffffff;
-  --color-rule: #d8d5cb;
-  --color-rule-strong: #0d1117;
+  /* Colour — surfaces */
+  --color-vellum: #f0efe9; /* L0 page canvas */
+  --color-paper-white: #ffffff; /* L1 cards, panels, inputs */
+  --color-carbon-warm: #322d2a; /* L2 nav pill, filled buttons, text, borders */
+  --color-onyx-depth: #0f0e12; /* L3 footer terminator */
 
-  /* Colour — brand */
-  --color-accent: #0b5c4a;
-  --color-accent-hover: #084638;
-  --color-accent-tint: #e3efe9;
+  /* Colour — text */
+  --color-text: var(--color-carbon-warm); /* 11.8:1 on vellum */
+  /* Derived (not in reference): Mercury #8b8b8b fails AA for text (2.96:1), so
+     secondary text uses a warm grey that passes on vellum (5.1:1) and white (5.9:1). */
+  --color-text-muted: #6a635e;
+  --color-text-on-dark: #ffffff;
+  --color-text-on-dark-muted: #b9b4ae; /* 6.6:1 on carbon, 7.6:1 on onyx */
+  --color-mercury: #8b8b8b; /* decorative / disabled only — never body text */
 
-  /* Colour — dark surfaces */
-  --color-night: #0b0f14;
-  --color-night-2: #141a21;
-  --color-night-rule: #2a323c;
-  --color-night-text: #ecebe6;
-  --color-night-muted: #a7adb5;
-  --color-night-accent: #86d3bc;
+  /* Colour — lines */
+  --color-line: var(--color-carbon-warm);
+  --color-line-soft: rgb(50 45 42 / 0.18);
+  --color-line-on-dark: rgb(255 255 255 / 0.18);
 
-  /* Colour — semantic */
-  --color-info-bg: #e8eef3;
-  --color-info-rule: #2f5674;
-  --color-pending-bg: #fbf1dc;
-  --color-pending-rule: #8a5a00;
-  --color-error: #a4161a;
-  --color-error-bg: #fbe9e9;
-  --color-success: #0b5c4a;
+  /* Colour — semantic (functional exception: form errors must be unmistakable) */
+  --color-error: #9b2c2c; /* 6.5:1 on vellum, 7.5:1 on white */
 
-  /* Status chips */
-  --status-research: #5b3f8c;
-  --status-in-development: #0b5c4a;
-  --status-planned: #2f5674;
-  --status-exploratory: #6b5a00;
-
-  /* Typography */
+  /* Typography — a single geometric sans, two weights */
   --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-mono: "JetBrains Mono Variable", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --weight-light: 300;
+  --weight-regular: 400;
 
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1.0625rem;
-  --text-lg: 1.25rem;
-  --text-xl: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
-  --text-2xl: clamp(1.625rem, 1.25rem + 1.6vw, 2.5rem);
-  --text-display: clamp(2.375rem, 1.5rem + 4.2vw, 5rem);
+  --text-label: 0.75rem; /* 12 */
+  --text-body-sm: 0.875rem; /* 14 */
+  --text-body: 1rem; /* 16 */
+  --text-subheading: 1.375rem; /* 22 */
+  --text-heading: clamp(1.625rem, 1.3rem + 1.2vw, 2rem); /* 26 → 32 */
+  --text-display: clamp(2.25rem, 1.6rem + 2.6vw, 3.25rem); /* 36 → 52 */
 
-  --leading-tight: 1.08;
-  --leading-snug: 1.25;
-  --leading-body: 1.62;
-  --tracking-display: -0.035em;
-  --tracking-heading: -0.02em;
-  --tracking-label: 0.08em;
+  --leading-display: 1;
+  --leading-heading: 1.2;
+  --leading-subheading: 1.3;
+  --leading-body: 1.4;
+  --leading-body-sm: 1.3;
+  --tracking: 0.01em;
+  --tracking-label: 0.12em;
 
-  /* Spacing (4px base) */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.5rem;
-  --space-6: 2rem;
-  --space-7: 3rem;
-  --space-8: 4rem;
-  --space-9: 6rem;
-  --section-y: clamp(3.5rem, 2rem + 5vw, 7rem);
+  /* Spacing — 4px base */
+  --space-4: 0.25rem;
+  --space-8: 0.5rem;
+  --space-12: 0.75rem;
+  --space-16: 1rem;
+  --space-24: 1.5rem;
+  --space-36: 2.25rem;
+  --space-48: 3rem;
+  --space-60: 3.75rem;
+  --space-96: 6rem;
+  --space-120: 7.5rem;
+  --section-gap: var(--space-48);
+  --section-y: clamp(3rem, 2rem + 4vw, 6rem);
+  --card-padding: 1.375rem; /* 22 */
+  --element-gap: var(--space-8);
 
   /* Layout */
-  --container: 77.5rem;
-  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
-  --header-h: 4rem;
-  --measure: 66ch;
+  --container: 75rem; /* 1200 */
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2rem);
+  --nav-h: 4.5rem;
+  --measure: 62ch;
 
-  /* Shape */
-  --radius: 2px;
-  --border: 1px solid var(--color-rule);
+  /* Shape — generous rounding, nothing below 8px on containers */
+  --radius-small: 8px;
+  --radius-body: 12px;
+  --radius-nav: 16px;
+  --radius-buttons: 16px;
+  --radius-cards: clamp(32px, 6vw, 80px); /* porthole panels; scales down on phones */
+  --radius-pills: 100px;
 
   /* Interaction */
-  --focus-ring: 0 0 0 2px var(--color-paper), 0 0 0 4px var(--color-accent);
+  --focus-ring: 0 0 0 2px var(--color-vellum), 0 0 0 4px var(--color-carbon-warm);
+  --focus-ring-on-dark: 0 0 0 2px var(--color-carbon-warm), 0 0 0 4px var(--color-paper-white);
   --tap-min: 44px;
 
   /* Motion */
   --ease: cubic-bezier(0.2, 0, 0, 1);
   --dur-fast: 120ms;
-  --dur: 200ms;
+  --dur: 220ms;
   --dur-slow: 320ms;
-
-  --shadow-pop: 0 1px 2px rgb(13 17 23 / 0.06), 0 12px 32px -8px rgb(13 17 23 / 0.18);
 }
 
 @media (prefers-reduced-motion: reduce) {

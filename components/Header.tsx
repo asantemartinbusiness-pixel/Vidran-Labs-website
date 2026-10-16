@@ -102,7 +102,8 @@ export function Header() {
 
   return (
     <header ref={headerRef} className="site-header">
-      <div className="container site-header__inner">
+      <div className="container">
+        <div className="site-header__inner">
         <Wordmark />
 
         <nav ref={navRef} className="primary-nav" aria-label="Primary">
@@ -151,6 +152,7 @@ export function Header() {
           <MenuIcon open={mobileOpen} />
           <span>{mobileOpen ? "Close" : "Menu"}</span>
         </button>
+        </div>
       </div>
 
       <MobileNav open={mobileOpen} pathname={pathname} />

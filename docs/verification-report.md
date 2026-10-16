@@ -12,7 +12,7 @@ edited by hand.
 | TypeScript strict (`npm run typecheck`) | Pass, 0 errors |
 | Unit tests (`npm test`) | **38 / 38 pass** (4 files) |
 | Production build (`npm run build`) | Pass, 36 content routes prerendered (34 at 200, `/opps/` as 404, plus 2 articles) |
-| End-to-end (`npm run test:e2e`) | **182 pass, 0 fail**, 13 skipped (device-specific tests skipped on the other project) |
+| End-to-end (`npm run test:e2e`) | **182 pass, 0 fail**, 13 skipped (device-specific tests skipped on the other project). Re-run after the redesign. |
 | Automated accessibility (axe-core 4.14, WCAG 2.0/2.1/2.2 A+AA + best practice) | **0 violations** on all 35 routes + 404, mobile menu, form error state and cookie dialog |
 | Link check (crawl of every page) | 35 internal targets, 9 mailto links, 0 external, **0 broken** |
 | Horizontal overflow at 320 / 375 / 430 / 768 / 1024 / 1440 / 1920 px | **None** on any page |
@@ -40,33 +40,37 @@ edited by hand.
 
 ## 3. Performance (Lighthouse 12.8, simulated throttling)
 
-Mobile = Moto G Power emulation, Slow 4G, 4× CPU. Desktop = desktop preset. SEO is 66 only because review
-builds are deliberately `noindex`; an indexing-enabled build of the homepage scored **SEO 100, Performance 98,
-Accessibility 100, Best Practices 100**.
+Measured after the vellum/carbon redesign. Mobile is Moto G Power emulation on Slow 4G with 4× CPU throttling;
+desktop uses the desktop preset. SEO scores 66 only because review builds are deliberately `noindex`. An
+indexing-enabled build previously scored SEO 100.
 
 | Page | Form | Perf | A11y | BP | FCP | LCP | CLS | TBT | Transfer |
 |---|---|---|---|---|---|---|---|---|---|
-| `/` | mobile | 98 | 100 | 100 | 1.4 s | 2.1 s | 0 | 90 ms | 282 KiB |
-| `/` | desktop | 100 | 100 | 100 | 0.4 s | 0.6 s | 0 | 0 ms | 292 KiB |
-| `/products/sage/` | mobile | 96 | 100 | 100 | 1.4 s | **2.6 s** | 0 | 60 ms | 283 KiB |
-| `/products/sage/` | desktop | 100 | 100 | 100 | 0.4 s | 0.6 s | 0 | 0 ms | 350 KiB |
-| `/products/sage/roadmap/` | mobile | 97 | 100 | 100 | 1.4 s | 2.5 s | 0 | 50 ms | 277 KiB |
-| `/products/sage/roadmap/` | desktop | 100 | 100 | 100 | 0.4 s | 0.6 s | 0 | 0 ms | 349 KiB |
-| `/start-a-project/` | mobile | 98 | 100 | 100 | 1.4 s | 2.2 s | 0 | 50 ms | 271 KiB |
-| `/start-a-project/` | desktop | 100 | 100 | 100 | 0.4 s | 0.6 s | 0 | 0 ms | 291 KiB |
-| `/insights/` | mobile | 95 | 100 | 100 | 1.4 s | **2.8 s** | 0 | 90 ms | 274 KiB |
-| `/insights/` | desktop | 100 | 100 | 100 | 0.4 s | 0.6 s | 0 | 0 ms | 308 KiB |
-| Article | mobile | 96 | 100 | 100 | 1.4 s | **2.6 s** | 0 | 40 ms | 269 KiB |
-| Article | desktop | 100 | 100 | 100 | 0.4 s | 0.6 s | 0.007 | 0 ms | 364 KiB |
+| `/` | mobile | 97 | 100 | 100 | 1.3 s | 2.5 s | 0 | 80 ms | 237 KiB |
+| `/` | desktop | 100 | 100 | 100 | 0.3 s | 0.5 s | 0 | 0 ms | 251 KiB |
+| `/products/sage/` | mobile | 95 | 100 | 100 | 1.2 s | 2.5 s | 0 | 150 ms | 242 KiB |
+| `/products/sage/` | desktop | 100 | 100 | 100 | 0.3 s | 0.6 s | 0 | 0 ms | 288 KiB |
+| `/products/sage/roadmap/` | mobile | 98 | 100 | 100 | 1.2 s | 2.3 s | 0 | 70 ms | 237 KiB |
+| `/products/sage/roadmap/` | desktop | 100 | 100 | 100 | 0.3 s | 0.5 s | 0 | 0 ms | 308 KiB |
+| `/start-a-project/` | mobile | 97 | 100 | 100 | 1.2 s | 2.4 s | 0 | 110 ms | 231 KiB |
+| `/start-a-project/` | desktop | 100 | 100 | 100 | 0.3 s | 0.5 s | 0 | 0 ms | 250 KiB |
+| `/insights/` | mobile | 99 | 100 | 100 | 1.2 s | 1.8 s | 0 | 120 ms | 233 KiB |
+| `/insights/` | desktop | 100 | 100 | 100 | 0.3 s | 0.5 s | 0 | 0 ms | 293 KiB |
+| Article | mobile | 97 | 100 | 100 | 1.2 s | 2.5 s | 0 | 100 ms | 229 KiB |
+| Article | desktop | 100 | 100 | 100 | 0.3 s | 0.6 s | 0 | 0 ms | 308 KiB |
 
-**Against targets:** Performance ≥ 90 ✓ on all. Accessibility ≥ 95 ✓. CLS ≤ 0.1 ✓. TBT (INP proxy) low ✓.
-Mobile LCP ≤ 2.5 s: **met on 3 of 6 templates in the lab; 2.6–2.8 s on 3.** These are lab numbers on a local
-server, not field (CrUX p75) data, which cannot exist until the site is live.
+**Against targets:**
 
-Likely cause and fix: the LCP element is the hero heading, which repaints when the self-hosted variable fonts
-swap in. Recommended follow-up: load the same WOFF2 files through `next/font/local` (adds preload and a
-metric-matched fallback, removing the swap repaint) and subset to Latin. Not done in this pass because the
-typefaces themselves are provisional (G-06).
+- Performance ≥ 90: met on all pages ✓
+- Accessibility ≥ 95: met ✓
+- CLS ≤ 0.1: met ✓
+- TBT, used as a proxy for INP: low ✓
+- **Mobile LCP ≤ 2.5 s: now met on all 6 templates in the lab** (1.8–2.5 s). Before the redesign, three templates
+  measured 2.6–2.8 s. Removing the second typeface cut about 45 KiB per page.
+
+These are lab numbers from a local server. Field data (CrUX p75) can't exist until the site is live. Three
+templates sit right at the 2.5 s limit, so loading the font through `next/font/local` (preload plus metric-matched
+fallback) is still a worthwhile safety margin.
 
 ## 4. Accessibility beyond automation
 
@@ -103,6 +107,13 @@ outcomes:
 | 13 | Low | Footer year fixed at build | Accepted, documented G-14 |
 | 14 | Low | Email-length error cleared prematurely | **Fixed** + regression test; limit explained in form inventory |
 | — | Note | Bidi override characters passed through | **Fixed** + unit test |
+
+Defects caught by the suite during the vellum/carbon redesign, all fixed:
+
+- The Sage pager overflowed by 24px at 320px. It now stacks below 560px.
+- Error-summary links were only 20px tall under the tighter 1.3 leading (WCAG 2.5.8). They are now at least 24px.
+- The mobile-panel geometry test measured during the slide-in animation. It now waits for the animation to finish,
+  and passed 35/35 under 6-way parallel load.
 
 Additional defects found by our own manual QA and fixed: mobile menu clipped by a `backdrop-filter` containing
 block (all mobile visitors affected; the automated suite had missed it — geometry assertion added); low-contrast

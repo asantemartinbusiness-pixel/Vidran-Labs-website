@@ -38,14 +38,9 @@ function Actions({ actions }: { actions: Action[] }) {
   );
 }
 
-function Eyebrow({ text, index }: { text?: string; index?: number }) {
+function Eyebrow({ text }: { text?: string; index?: number }) {
   if (!text) return null;
-  return (
-    <p className="eyebrow">
-      {index !== undefined ? <span className="eyebrow__index">{String(index).padStart(2, "0")}</span> : null}
-      {text}
-    </p>
-  );
+  return <p className="eyebrow">{text}</p>;
 }
 
 function Section({
@@ -90,22 +85,37 @@ function Head({ eyebrow, title, intro, level = 2, index }: { eyebrow?: string; t
 export function BlockView({ block, isFirst, compactHero, sectionIndex }: { block: Block; isFirst: boolean; compactHero?: boolean; sectionIndex?: number }) {
   switch (block.type) {
     case "hero": {
-      const dark = block.tone === "dark";
       const Title = isFirst ? "h1" : "h2";
-      return (
-        <section
-          className={`block hero${compactHero ? " hero--compact" : ""}${dark ? " on-dark hero--grid" : ""}`}
-          data-provenance={block.provenance}
-        >
-          <span className="provenance-badge">{PROVENANCE_LABEL[block.provenance]}</span>
-          <div className="container">
-            <div className="hero__inner">
-              <Eyebrow text={block.eyebrow} />
-              <Title className="hero__title">{block.title}</Title>
-              {block.lede ? <Rich text={block.lede} className="hero__lede" /> : null}
-              {block.actions ? <Actions actions={block.actions} /> : null}
+      const inner = (
+        <div className="hero__inner">
+          <Eyebrow text={block.eyebrow} />
+          <Title className="hero__title">{block.title}</Title>
+          {block.lede ? <Rich text={block.lede} className="hero__lede" /> : null}
+          {block.actions ? <Actions actions={block.actions} /> : null}
+        </div>
+      );
+      if (block.tone === "dark") {
+        return (
+          <section className="block hero hero--panel" data-provenance={block.provenance}>
+            <span className="provenance-badge">{PROVENANCE_LABEL[block.provenance]}</span>
+            <div className="container">
+              <div className="hero-panel on-dark">
+                {inner}
+                {block.feature ? (
+                  <Link href={block.feature.href} className="feature-card">
+                    <span className="eyebrow">{block.feature.label}</span>
+                    <span className="feature-card__title">{block.feature.title}</span>
+                  </Link>
+                ) : null}
+              </div>
             </div>
-          </div>
+          </section>
+        );
+      }
+      return (
+        <section className={`block hero${compactHero ? " hero--compact" : ""}`} data-provenance={block.provenance}>
+          <span className="provenance-badge">{PROVENANCE_LABEL[block.provenance]}</span>
+          <div className="container">{inner}</div>
         </section>
       );
     }
@@ -340,11 +350,13 @@ export function BlockView({ block, isFirst, compactHero, sectionIndex }: { block
     case "sitemap":
       return (
         <Section block={block}>
-          <h2 className="section-head__title section-head--stack">{block.title}</h2>
+          <div className="section-head section-head--stack">
+            <h2 className="section-head__title">{block.title}</h2>
+          </div>
           <div className="link-columns">
             {footerNav.map((group) => (
               <div key={group.title}>
-                <h3 className="meta">{group.title}</h3>
+                <h3 className="eyebrow">{group.title}</h3>
                 <ul>
                   {group.items.map((i) => (
                     <li key={i.href}>

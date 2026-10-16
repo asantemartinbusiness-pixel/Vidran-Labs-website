@@ -29,8 +29,10 @@ labelled, and the build refuses to publish them until they are approved.
 - **Search and trust infrastructure**: canonical URLs, unique metadata, a sitemap, robots rules, structured
   data, a social preview image, real 404s, security headers, cookie settings, and an indexing switch that is
   off by default.
-- **A design system**: design tokens and about 15 reusable components in an editorial, institutional style,
-  without the usual template look.
+- **A design system** in the "blueprint on vellum" language you chose. It is monochrome, with whisper-light 300
+  headlines, square section labels, pill buttons, a floating carbon nav pill, 80px "porthole" panels and an onyx
+  footer, and it uses no shadows. It is adapted to meet WCAG AA, and the deviations are listed in
+  `design-system-audit.md`.
 
 ## What was preserved
 
@@ -76,7 +78,8 @@ says the information is pending.
 | Publishing drafted copy as company statements | High → controlled | The release gate blocks it, but approval still needs to be a deliberate content review |
 | Domain and hosting outage (G-12) | High | Separate infrastructure problem; this work does not fix it |
 | Visual identity differs from the original | Medium | Brand assets can be dropped in at three points in the code |
-| Mobile loading speed slightly over target on 3 of 6 page templates in lab tests (2.6–2.8 s vs 2.5 s) | Low | Fix identified: a different font-loading method |
+| Mobile loading speed at the 2.5 s target on 3 of 6 templates (all now pass in lab tests, but with no margin) | Low | Optional font preloading would add headroom |
+| The design adopts another company's visual language | Low | Only the aesthetic was taken, not their name, logo, copy or imagery. Swap to original Vidran assets when they are supplied |
 | No screen-reader or Firefox/Safari testing yet | Medium | Do this before launch |
 
 ## What production approval needs

@@ -15,10 +15,12 @@ export const corePages: PageDoc[] = [
         eyebrow: "Vidran Labs",
         title: "Technology for Systems That Matter.",
         lede: "Software, artificial intelligence, automation, data, digital infrastructure, intelligent systems, products and research.",
+        tone: "dark",
         actions: [
           { label: "Start a project", href: "/start-a-project/", variant: "primary" },
           { label: "Explore Sage", href: "/products/sage/", variant: "secondary" },
         ],
+        feature: { label: "Pre-release", title: "Sage — an operating-system initiative under active development", href: "/products/sage/" },
       },
       {
         type: "cards",

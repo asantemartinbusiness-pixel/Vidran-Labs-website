@@ -31,7 +31,17 @@ interface BlockBase {
 }
 
 export type Block =
-  | (BlockBase & { type: "hero"; eyebrow?: string; title: string; lede?: string; actions?: Action[]; tone?: "light" | "dark" })
+  | (BlockBase & {
+      type: "hero";
+      eyebrow?: string;
+      title: string;
+      lede?: string;
+      actions?: Action[];
+      /** "dark" renders the carbon porthole panel (stands in for photography). */
+      tone?: "light" | "dark";
+      /** Small caption card on a dark panel, linking to a featured item. */
+      feature?: { label: string; title: string; href: string };
+    })
   | (BlockBase & { type: "prose"; eyebrow?: string; title?: string; paragraphs: string[]; aside?: string })
   | (BlockBase & { type: "cards"; eyebrow?: string; title?: string; intro?: string; columns?: 2 | 3 | 4; items: CardItem[] })
   | (BlockBase & { type: "steps"; eyebrow?: string; title: string; intro?: string; items: { title: string; body: string }[] })

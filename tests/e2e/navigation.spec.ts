@@ -90,6 +90,8 @@ test.describe("mobile navigation", () => {
     await expect(panel).toBeVisible();
     await expect(page.locator("main#main")).toHaveAttribute("inert", "");
     // Regression: the panel must sit directly under the header and fill the rest of the viewport.
+    // Measure after the 320ms slide-in completes, or the transform skews the box.
+    await page.waitForFunction(() => document.getAnimations().every((a) => a.playState !== "running"));
     const header = (await page.locator("header.site-header").boundingBox())!;
     const box = (await panel.boundingBox())!;
     const vh = page.viewportSize()!.height;

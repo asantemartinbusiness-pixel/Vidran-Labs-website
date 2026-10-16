@@ -16,21 +16,19 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px",
-          background: "#0b0f14",
-          color: "#ecebe6",
-          backgroundImage:
-            "linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
-          backgroundSize: "64px 64px",
+          background: "#f0efe9",
+          color: "#322d2a",
         }}
       >
         <div style={{ display: "flex", fontSize: 34, letterSpacing: "-0.01em" }}>
-          <span style={{ fontWeight: 700 }}>Vidran</span>
-          <span style={{ marginLeft: 10, color: "#a7adb5" }}>Labs</span>
+          <span>Vidran</span>
+          <span style={{ marginLeft: 10, color: "#6a635e" }}>Labs</span>
         </div>
-        <div style={{ display: "flex", fontSize: 84, fontWeight: 600, lineHeight: 1.05, letterSpacing: "-0.03em", maxWidth: 980 }}>
+        <div style={{ display: "flex", fontSize: 84, fontWeight: 300, lineHeight: 1, letterSpacing: "0.01em", maxWidth: 980 }}>
           Technology for Systems That Matter.
         </div>
-        <div style={{ display: "flex", fontSize: 24, color: "#86d3bc", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+        <div style={{ display: "flex", alignItems: "center", fontSize: 22, letterSpacing: "0.12em", textTransform: "uppercase" }}>
+          <div style={{ width: 8, height: 8, background: "#322d2a", marginRight: 16 }} />
           Software · AI · Automation · Data · Infrastructure
         </div>
       </div>

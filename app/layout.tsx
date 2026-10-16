@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import "@fontsource-variable/inter/wght.css";
-import "@fontsource-variable/jetbrains-mono/wght.css";
 import "@/styles/tokens.css";
 import "@/styles/base.css";
 import "@/styles/components.css";
@@ -20,7 +19,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f7f6f2",
+  themeColor: "#f0efe9",
   width: "device-width",
   initialScale: 1,
 };

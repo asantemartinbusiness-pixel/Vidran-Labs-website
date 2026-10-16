@@ -7,11 +7,10 @@ generated in code or a licensed open-source font, and every brand asset is **pro
 |---|---|---|---|---|---|---|---|
 | A-01 | Logo / wordmark | Not recovered | `components/Wordmark.tsx` (inline SVG + text) | Header, footer | SVG 22×22 + text | Link label "Vidran Labs — home"; mark is decorative | Provisional — replace with approved logo |
 | A-02 | Favicon | Not recovered | `app/icon.svg` | Browser tab | SVG 32×32 | n/a | Provisional |
-| A-03 | Inter Variable | Google Fonts / rsms (OFL) | `node_modules/@fontsource-variable/inter` → self-hosted by Next | All text | WOFF2, subset per unicode-range | n/a | SIL OFL 1.1 — provisional choice |
-| A-04 | JetBrains Mono Variable | JetBrains (OFL) | `node_modules/@fontsource-variable/jetbrains-mono` | Labels, metadata | WOFF2 | n/a | SIL OFL 1.1 — provisional choice |
+| A-03 | Inter Variable (weights 300/400; 500 for inline emphasis) | Google Fonts / rsms (OFL) | `node_modules/@fontsource-variable/inter` → self-hosted by Next | All text — the single typeface | WOFF2, subset per unicode-range | n/a | SIL OFL 1.1 — substitute recommended by the style reference |
 | A-05 | Social preview image | Not recovered | `app/opengraph-image.tsx` (generated PNG) | `og:image`, `twitter:image` | PNG 1200×630 | "Vidran Labs — Technology for Systems That Matter." | Provisional |
-| A-06 | Sage hero grid texture | New | CSS gradient (`.hero--grid`) | Sage overview hero | CSS | Decorative | New, no licence needed |
-| A-07 | UI icons (chevron, arrow, info, menu) | New | `components/icons.tsx`, `Header.tsx` | Navigation, CTAs, notices | Inline SVG | `aria-hidden` | New |
+| A-06 | Blueprint grid on porthole panels | New | CSS gradient (`.hero-panel`) | Home and Sage hero panels — placeholder for photography | CSS | Decorative | New, no licence needed |
+| A-07 | UI icons (chevron, arrow, menu); square label indicator and +/− accordion drawn in CSS | New | `components/icons.tsx`, `Header.tsx`, `styles/` | Navigation, CTAs | Inline SVG / CSS | `aria-hidden` | New |
 | A-08 | Select chevron | New | `styles/components.css` (data URI) | Form selects | SVG data URI | Decorative | New |
 
 ## Missing original assets (to be supplied)
@@ -20,7 +19,7 @@ generated in code or a licensed open-source font, and every brand asset is **pro
 |---|---|
 | Primary and secondary logo (SVG), brand mark | `components/Wordmark.tsx`, `app/icon.svg`, OG image |
 | Brand colour values and typefaces | `styles/tokens.css` (`--color-*`, `--font-*`) |
-| Hero / brand imagery | Home hero, Company, Mission (no slot rendered until supplied) |
+| Industrial / documentary photography (the visual language expects it) | Home and Sage hero panels (currently Carbon blueprint panels), plus 80px-radius image cards in content sections. Use original Vidran photography only. |
 | Sage interface imagery | `/products/sage/` and `/products/sage/interface/` (pending notice currently shown) |
 | Research artwork, article thumbnails | Insights list and article pages |
 | Social preview images per page | `opengraph-image` per route segment |
